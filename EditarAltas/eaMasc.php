@@ -19,7 +19,7 @@ if(isset($_POST['enviar'])){
         $query=$mysqli->prepare('UPDATE Mascota SET nom=?,genere=?,Especie=?,Raça=?,Data_Naixement=?,Propietari=?,Vet=? WHERE Xip=?');
         $query->bind_param('ssissssi',$nom,$genere,$Especie,$Raça,$Data_Naixement,$Propietari,$Vet,$Xip);
         if($query->execute()){
-            header('Location: ../index.php');
+            header('Location: ../Tablas/tablaMasc.php');
         } else{
             echo "Error: No se pudo actualizar la mascota. Por favor intente nuevamente.";
         }

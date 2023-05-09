@@ -16,7 +16,7 @@ if(isset($_POST['enviar'])){
         $query=$mysqli->prepare('UPDATE Veterinari SET Nom=?, Telf=?, Especialitat=?, Data_Contracte=?, Salari=? WHERE Id=?');
         $query->bind_param('sisssi', $Nom, $Telf, $Especialitat, $Data_Contracte, $Salari, $Id);
         if($query->execute()){
-            header('Location: ../index.php');
+            header('Location: ../Tablas/tablaVet.php');
         } else{
             echo "Error: No se pudo actualizar el veterinario. Por favor intente nuevamente.";
         }

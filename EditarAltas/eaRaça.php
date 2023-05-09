@@ -9,8 +9,8 @@ if(isset($_POST['enviar'])){
     $query = $mysqli->prepare('UPDATE raça SET nom=?, alçada=?, pes=?, caracter=? WHERE id=?');
     $query->bind_param('sddsi', $nom, $alçada, $pes, $caracter, $id);
     $query->execute();
-    header('Location: ../index.php');
+    header('Location: ../Tablas/tablaRaza.php');
 } else {
-    header('Location: ../index.php');
+    header('Location: ../Tablas/tablaRaza.php');
 }
 ?>

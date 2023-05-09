@@ -15,7 +15,7 @@ if(isset($_POST['enviar'])){
         $query=$mysqli->prepare('UPDATE propietari SET Nom=?,Adreça=?,Telf=?,Mail=? WHERE DNI=?');
         $query->bind_param('ssisi',$Nom,$Adreça,$Telf,$Mail,$DNI);
         if($query->execute()){
-            header('Location: ../index.php');
+            header('Location: ../Tablas/tablaProp.php');
         } else{
             echo "Error: No se pudo actualizar el propietario. Por favor intente nuevamente.";
         }
