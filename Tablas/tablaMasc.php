@@ -96,7 +96,7 @@ $result = $mysqli->query ($query);
                         $fila=$fila."<td>" . $row["veterinario"] . "</td>";
                         $fila=$fila."<td>" . $row["Historial"] . "</td>";
                         $fila=$fila."<td><a href='../FormEditar/formMasc.php".$row["xip"]."' class='btn btn-primary btn-sm my-2'>Editar</a></td>";
-                        $fila=$fila."<td><a href='#' onclick='alertaBorrar(".$row["Xip"].")' class='btn btn-danger btn-sm my-2'>Eliminar</a></td></tr>";
+                        $fila=$fila."<td><a href='../Eliminar/eliminar.php' onclick='alertaBorrar(".$row["Xip"].")' class='btn btn-danger btn-sm my-2'>Eliminar</a></td></tr>";
                         echo $fila;
                     }
                 }

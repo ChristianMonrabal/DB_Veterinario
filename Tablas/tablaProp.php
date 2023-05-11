@@ -84,7 +84,7 @@ $result = $mysqli->query ($query);
         $fila=$fila."<td>" . $row["Telf"] . "</td>";
         $fila=$fila."<td>" . $row["Mail"] . "</td>";
         $fila=$fila."<td><a href='../FormEditar/formProp.php".$row["propietari"]."' class='btn btn-primary btn-sm my-2'>Editar</a></td>";
-        $fila=$fila."<td><a href='#' onclick='alertaBorrar(".$row["propietari"].")' class='btn btn-danger btn-sm my-2'>Eliminar</a></td></tr>";
+        $fila = $fila . "<td><a href='../Eliminar/eliminar.php?id=" . $row["DNI"] . "' onclick=\"alertaBorrar('" . $row["DNI"] . "')\" class='btn btn-danger btn-sm my-2'>Eliminar</a></td></tr>";
         echo $fila;
         }
     }

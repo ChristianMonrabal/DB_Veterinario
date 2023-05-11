@@ -83,7 +83,7 @@ $result = $mysqli->query ($query);
         $fila=$fila."<td>" . $row["Pes"] . "</td>";
         $fila=$fila."<td>" . $row["Caracter"] . "</td>";
         $fila=$fila."<td><a href='../FormEditar/formRaza.php".$row["raça"]."' class='btn btn-primary btn-sm my-2'>Editar</a></td>";
-        $fila=$fila."<td><a href='#' onclick='alertaBorrar(".$row["raça"].")' class='btn btn-danger btn-sm my-2'>Eliminar</a></td></tr>";
+        $fila=$fila."<td><a href='../Eliminar/eliminar.php'(".$row["raça"].")' class='btn btn-danger btn-sm my-2'>Eliminar</a></td></tr>";
         echo $fila;
         }
     }

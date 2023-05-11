@@ -3,7 +3,7 @@ include_once "../conexion.php";
 ?>
 <div class="form-control border">
     <div class="col-12">
-        <form action="../Altas/altaMasc.php">
+        <form action="../Altas/altaMasc.php" method="GET" onsubmit="return validacion()">
             <div class="mb-3">
                 <label for="descripcion">Xip</label>
                 <input type="number" name="xip" id="xip" class="form-control" placeholder="Xip" >
@@ -98,4 +98,3 @@ include_once "../conexion.php";
         </form>
     </div>
 </div>
-

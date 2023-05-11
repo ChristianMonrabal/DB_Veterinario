@@ -67,4 +67,3 @@ include "conexion.php";
 }
 </style>
 <img class="fondo" src="./img/background.jpeg">
-<script src="./js/main.js"></script>

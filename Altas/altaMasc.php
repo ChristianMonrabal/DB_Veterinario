@@ -1,27 +1,38 @@
-<?php 
-include_once "../header.php";
-include_once "../conexion.php";
-if (!isset($_POST['enviar']) || empty($_POST['Xip']) || empty($_POST['nom']) || empty($_POST['genere']) || empty($_POST['Especie']) || empty($_POST['Raça']) || empty($_POST['Data_Naixement']) || empty($_POST['Propietari']) || empty($_POST['Vet']) || empty($_POST['Historial'])) {
-    // Si algún campo del formulario está vacío, no hacemos nada
+<?php
+if (!isset($_GET['enviar']) || empty($_GET['xip']) || empty($_GET['nombre']) || empty($_GET['genero']) || empty($_GET['especie']) || empty($_GET['raza']) || empty($_GET['fecha']) || empty($_GET['propietario']) || empty($_GET['veterinario']) || empty($_GET['historial'])) {
+    header('Location: ../FormAlta/formProp.php');
 } else {
-   // Si se han completado todos los campos obligatorios, se procede a insertar los datos en la base de datos
-}
-$id_mascota = $mysqli->insert_id;
-$Id_Historial = $_POST['Id_Historial'];
-$Historial = $_POST['Historial'];
-$query = $mysqli->prepare('INSERT INTO Historial (Id_Historial, Historial) VALUES (?,?)');
-$query->bind_param('is', $Id_Historial, $Historial);
-$query->execute();
-$Xip = $_POST['Xip'];
-$nom = $_POST['nom'];
-$genere = $_POST['genere'];
-$Especie = $_POST['Especie'];
-$Raça = $_POST['Raça'];
-$Data_Naixement = $_POST['Data_Naixement'];
-$Propietari = $_POST['Propietari'];
-$Vet = $_POST['Vet'];
-$query = $mysqli->prepare('INSERT INTO Mascota (Xip,nom,genere,Especie,Raça,Data_Naixement,Propietari,Vet) VALUES (?,?,?,?,?,?,?,?)');
-$query->bind_param('isssisii', $Xip, $nom, $genere, $Especie, $Raça, $Data_Naixement, $Propietari, $Vet);
-$query->execute();
+    include_once "../conexion.php";
+    $xip = $_GET['xip'];
+    $nombre = $_GET['nombre'];
+    $genero = $_GET['genero'];
+    $especie = $_GET['especie'];
+    $raza = $_GET['raza'];
+    $fecha = $_GET['fecha'];
+    $propietario = $_GET['propietario'];
+    $veterinario = $_GET['veterinario'];
+    $historial = $_GET['historial'];
 
-header('Location: ../Tablas/tablaMasc.php');
+    $sentencia = $mysqli->prepare("SELECT MAX(Id_Historial) AS maxID from Historial");
+    $sentencia->execute();
+    $resultado = $sentencia->get_result();
+    $max = $resultado->fetch_assoc();
+
+    if (!$max) {
+        exit("No hay resultados para ese ID");
+    } else {
+        $NewIdHist = $max["maxID"] + 1;
+        $sentencia1 = $mysqli->prepare("INSERT INTO Historial (Id_Historial, Historial) VALUES (?, ?)");
+        $sentencia1->bind_param("is", $NewIdHist, $historial);
+        $sentencia1->execute();
+    }
+
+    // Insertar en la tabla "mascota"
+    $sentencia2 = $mysqli->prepare('INSERT INTO Mascota (Xip, Nom, genere, Especie, Raça, Data_Naixement, Propietari, Vet, Historial) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $sentencia2->bind_param('isssisisi', $xip, $nombre, $genero, $especie, $raza, $fecha, $propietario, $veterinario, $NewIdHist);
+    $sentencia2->execute();
+
+    header('Location: ../Tablas/tablaMasc.php');
+    exit();
+}
+?>

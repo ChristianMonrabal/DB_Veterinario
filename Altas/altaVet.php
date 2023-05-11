@@ -12,7 +12,7 @@ if(!isset($_POST['enviar']) || empty($_POST['Id'])|| empty($_POST['Nom'])|| empt
     $Data_Contracte=$_POST['Data_Contracte'];
     $Salari=$_POST['Salari'];
     $query=$mysqli->prepare('INSERT INTO Veterinari (Id,Nom,Telf,Especialitat,Data_Contracte,Salari) VALUES (?,?,?,?,?,?)');
-    $query->bind_param('issisi',$Id,$Nom,$Telf,$Especialitat,$Data_Contracte,$Salari);
+    $query->bind_param('issssi',$Id,$Nom,$Telf,$Especialitat,$Data_Contracte,$Salari);
     $query->execute();
     header('Location: ../Tablas/tablaVet.php');
 };
